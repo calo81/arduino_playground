@@ -12,11 +12,11 @@ void setup() {
 void loop() {
     if(Comp("lightsOn")==0){
        digitalWrite(led, HIGH);
-       Serial.println("turning on");
+       Serial.println("lights on;");
     }
     else if(Comp("lightsOff")==0){       
        digitalWrite(led, LOW);
-       Serial.println("turning off");
+       Serial.println("lights off;");
     }   
 }
  
