@@ -1,12 +1,13 @@
 #include <Servo.h>
-// DC hobby servo
+
 Servo servo1;
 const int trigPin = 13;
 const int echoPin = 12;
-int pos = 0;
+const int buzzer = 7;
 
 void setup() {
   servo1.attach(10);
+  pinMode(buzzer,OUTPUT);
   Serial.begin(9600);
 }
 
@@ -32,18 +33,16 @@ void loop() {
   Serial.println();
 
   if (inches < 6) {     
-    if(pos < 180){  
-      servo1.write(180);  
-      pos = 180;   
-      delay(15);
-    }
+    servo1.write(150); 
+    digitalWrite(buzzer,HIGH);
+    delay(10);
+    digitalWrite(buzzer,LOW);
+    delay(15);
   } 
   else {   
-    if(pos > 0){  
-      servo1.write(0);  
-      pos = 0;  
-     delay(15); 
-    }                       
+    servo1.write(0);  
+    digitalWrite(buzzer,LOW);
+    delay(15);                      
   }
 
   Serial.print(inches);
@@ -55,4 +54,7 @@ void loop() {
 long microsecondsToInches(long microseconds) {
   return microseconds / 74 / 2;
 }
+
+
+
 
